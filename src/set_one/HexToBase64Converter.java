@@ -4,17 +4,20 @@ import java.math.BigDecimal;
 
 public class HexToBase64Converter {
 
-    String hexadecimal = "0123456789abcdef";
-    String base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
     /*
     Hexadecimal is base 8 (0, 1, 2, 3, 4, 5, 6, 7, 8)
     base64 is base 64 (0, 1, 2, 3...64)
 
     Step 1: Hexadecimal -> Decimal
     Step 2: Decimal -> base64 (decimal to base64)
-
      */
+
+    /*
+    I originally tried to use a double but it kept on displaying it as standard form
+     */
+
+    String hexadecimal = "0123456789abcdef";
+    String base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     public String convertHexToBase64(String hex) {
         BigDecimal decimalRepOfHex = hexToDecimal(hex);
