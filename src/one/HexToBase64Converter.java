@@ -16,8 +16,8 @@ public class HexToBase64Converter {
     I originally tried to use a double but it kept on displaying it as standard form
      */
 
-    private String hexadecimal = "0123456789abcdef";
-    private String base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    private final String hexadecimal = NumberConverter.HEXADECIMAL;
+    private final String base64 = NumberConverter.BASE64;
 
     String convertHexToBase64(String hex) {
         BigDecimal decimalRepOfHex = hexToDecimal(hex);

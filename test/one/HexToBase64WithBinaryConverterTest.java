@@ -21,7 +21,7 @@ class HexToBase64WithBinaryConverterTest {
     void generatesPartialBase64StringForPartialBinary() {
         String expectedBase64String = "R";
         String binaryString = "010001";
-        assertEquals(expectedBase64String, converter.convertSixBitBinaryToBase64Digit(binaryString));
+        assertEquals(expectedBase64String, converter.convertBinaryOfHexDigitToBase64Digit(binaryString));
     }
 
     @Test
@@ -47,21 +47,21 @@ class HexToBase64WithBinaryConverterTest {
 
     @Test
     void generateBinaryStringFromHexInt0() {
-        assertEquals("0000", converter.convertHexIntDigitToBinaryString(0));
+        assertEquals("0000", converter.convertDecimalOfHexDigitToBinaryString(0));
     }
 
     @Test
     void generateBinaryStringFromHexInt4() {
-        assertEquals("0100", converter.convertHexIntDigitToBinaryString(4));
+        assertEquals("0100", converter.convertDecimalOfHexDigitToBinaryString(4));
     }
 
     @Test
     void generateBinaryStringFromHexInt10() {
-        assertEquals("1010", converter.convertHexIntDigitToBinaryString(10));
+        assertEquals("1010", converter.convertDecimalOfHexDigitToBinaryString(10));
     }
 
     @Test
     void generateBinaryStringFromHexInt56() {
-        assertEquals("111000", converter.convertHexIntDigitToBinaryString(56));
+        assertEquals("111000", converter.convertDecimalOfHexDigitToBinaryString(56));
     }
 }
