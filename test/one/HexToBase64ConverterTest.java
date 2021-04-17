@@ -1,4 +1,4 @@
-package set_one;
+package one;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,8 +7,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HexToBase64ConverterTest {
-    HexToBase64Converter converter = new HexToBase64Converter();
-
+    private HexToBase64Converter converter = new HexToBase64Converter();
 
     @Test
     void hexToBase64() {

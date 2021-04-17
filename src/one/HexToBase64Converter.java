@@ -1,4 +1,4 @@
-package set_one;
+package one;
 
 import java.math.BigDecimal;
 
@@ -16,17 +16,17 @@ public class HexToBase64Converter {
     I originally tried to use a double but it kept on displaying it as standard form
      */
 
-    String hexadecimal = "0123456789abcdef";
-    String base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    private String hexadecimal = "0123456789abcdef";
+    private String base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-    public String convertHexToBase64(String hex) {
+    String convertHexToBase64(String hex) {
         BigDecimal decimalRepOfHex = hexToDecimal(hex);
         String base64 = decimalToBase64(decimalRepOfHex);
 
         return base64;
     }
 
-    public BigDecimal hexToDecimal(String hex) {
+    BigDecimal hexToDecimal(String hex) {
         String[] reversedHexArray = new StringBuilder(hex).reverse().toString().split("");
 
         BigDecimal decimalDoubleValue = new BigDecimal(0);
@@ -42,7 +42,7 @@ public class HexToBase64Converter {
         return decimalDoubleValue;
     }
 
-    public String decimalToBase64(BigDecimal decimalRepOfHex) {
+    String decimalToBase64(BigDecimal decimalRepOfHex) {
         BigDecimal quotient = decimalRepOfHex;
         BigDecimal sixtyFour = new BigDecimal(64);
         String base64Value = "";
@@ -57,12 +57,12 @@ public class HexToBase64Converter {
         return base64Value;
     }
 
-    public int returnDecimalIndexForHexDigit(String hexDigit) {
+    int returnDecimalIndexForHexDigit(String hexDigit) {
         int hexDigitInt = new StringBuilder(hexadecimal).indexOf(hexDigit);
         return hexDigitInt;
     }
 
-    public String returnBase64DigitForDecimalIndex(BigDecimal base64DigitInt) {
+    String returnBase64DigitForDecimalIndex(BigDecimal base64DigitInt) {
         char base64Digit = new StringBuilder(base64).charAt(base64DigitInt.intValue());
         return Character.toString(base64Digit);
     }
