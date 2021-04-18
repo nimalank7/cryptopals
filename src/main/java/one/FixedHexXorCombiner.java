@@ -21,8 +21,8 @@ public class FixedHexXorCombiner {
             String binaryOfHexTwoDigit = hexToBase64WithBinaryConverter.convertHexStringToBinaryString(hexTwoDigitArray[i]);
             String xorOfBinaryOfHexDigits = xorOfBinaryOfHexDigit(binaryOfHexOneDigit, binaryOfHexTwoDigit);
             int decimalOfXorOfBinaryOfHexDigits = NumberConverter.decimalOfBinary(xorOfBinaryOfHexDigits);
-            String hexDigitForXorOfBinaryOfHexDigits = NumberConverter.hexadecimalDigitForIndex(decimalOfXorOfBinaryOfHexDigits);
-            xorHexCombinationBuilder.append(hexDigitForXorOfBinaryOfHexDigits);
+            String hexDigitsForXorOfBinaryOfHexDigits = NumberConverter.decimalToHexadecimalDigit(decimalOfXorOfBinaryOfHexDigits);
+            xorHexCombinationBuilder.append(hexDigitsForXorOfBinaryOfHexDigits);
         }
         return xorHexCombinationBuilder.toString();
     }

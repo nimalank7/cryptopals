@@ -21,7 +21,7 @@ class HexToBase64ConverterTest {
     @Test
     void convertsHex7CtoDecimal124() {
         BigDecimal decimalRep = new BigDecimal(124);
-        BigDecimal actualDecimalRep = converter.hexToDecimal("7c");
+        BigDecimal actualDecimalRep = converter.hexStringToDecimalString("7c");
 
         assertTrue(decimalRep.compareTo(actualDecimalRep) == 0);
     }
@@ -29,7 +29,7 @@ class HexToBase64ConverterTest {
     @Test
     void convertHexfftoDecimal255() {
         BigDecimal decimalRep = new BigDecimal(255);
-        BigDecimal actualDecimalRep = converter.hexToDecimal("ff");
+        BigDecimal actualDecimalRep = converter.hexStringToDecimalString("ff");
 
         assertTrue(decimalRep.compareTo(actualDecimalRep) == 0);
     }
@@ -45,28 +45,4 @@ class HexToBase64ConverterTest {
         BigDecimal decimalRepSixtyThree = new BigDecimal(63);
         assertEquals("/", converter.decimalToBase64(decimalRepSixtyThree));
     }
-
-    @Test
-    void returnDecimalIndex10ForHexDigitA(){
-        assertEquals(10, converter.returnDecimalIndexForHexDigit("a"));
-    }
-
-    @Test
-    void returnDecimalIndex1ForHexDigit1(){
-        assertEquals(1, converter.returnDecimalIndexForHexDigit("1"));
-    }
-
-    @Test
-    void returnDecimalIndex1ForBase64Digit1(){
-        BigDecimal decimalRepOne = new BigDecimal(1);
-        assertEquals("B", converter.returnBase64DigitForDecimalIndex(decimalRepOne));
-    }
-
-    @Test
-    void returnBase64DigitForDecimalIndex63() {
-        BigDecimal decimalRepSixtyThree = new BigDecimal(63);
-        assertEquals("/", converter.returnBase64DigitForDecimalIndex(decimalRepSixtyThree));
-    }
-
-
 }

@@ -16,17 +16,14 @@ public class HexToBase64Converter {
     I originally tried to use a double but it kept on displaying it as standard form
      */
 
-    private final String hexadecimal = NumberConverter.HEXADECIMAL;
-    private final String base64 = NumberConverter.BASE64;
-
     String convertHexToBase64(String hex) {
-        BigDecimal decimalRepOfHex = hexToDecimal(hex);
+        BigDecimal decimalRepOfHex = hexStringToDecimalString(hex);
         String base64 = decimalToBase64(decimalRepOfHex);
 
         return base64;
     }
 
-    BigDecimal hexToDecimal(String hex) {
+    BigDecimal hexStringToDecimalString(String hex) {
         String[] reversedHexArray = new StringBuilder(hex).reverse().toString().split("");
 
         BigDecimal decimalDoubleValue = new BigDecimal(0);
@@ -34,7 +31,7 @@ public class HexToBase64Converter {
 
         for(int i = 0; i < reversedHexArray.length; i++ ) {
             BigDecimal powerOfSixteen = sixteen.pow(i);
-            BigDecimal decimalIndexForHex = new BigDecimal(returnDecimalIndexForHexDigit(reversedHexArray[i]));
+            BigDecimal decimalIndexForHex = new BigDecimal(NumberConverter.hexToDecimal(reversedHexArray[i]));
             BigDecimal decimalValueOfHexDigit = powerOfSixteen.multiply(decimalIndexForHex);
             decimalDoubleValue = decimalDoubleValue.add(decimalValueOfHexDigit);
         }
@@ -49,21 +46,11 @@ public class HexToBase64Converter {
 
         while (quotient.compareTo(BigDecimal.ZERO) > 0) {
             BigDecimal remainder = quotient.remainder(sixtyFour);
-            String base64DigitForDecimalIndex = returnBase64DigitForDecimalIndex(remainder);
+            String base64DigitForDecimalIndex = NumberConverter.returnBase64DigitForDecimalIndex(remainder);
             quotient = quotient.divideToIntegralValue(sixtyFour);
 
             base64Value = base64DigitForDecimalIndex + base64Value;
         }
         return base64Value;
-    }
-
-    int returnDecimalIndexForHexDigit(String hexDigit) {
-        int hexDigitInt = new StringBuilder(hexadecimal).indexOf(hexDigit);
-        return hexDigitInt;
-    }
-
-    String returnBase64DigitForDecimalIndex(BigDecimal base64DigitInt) {
-        char base64Digit = new StringBuilder(base64).charAt(base64DigitInt.intValue());
-        return Character.toString(base64Digit);
     }
 }

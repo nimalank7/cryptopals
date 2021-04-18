@@ -44,24 +44,4 @@ class HexToBase64WithBinaryConverterTest {
         String hexString = "ab12";
         assertEquals(expectedBinaryString, converter.convertHexStringToBinaryString(hexString));
     }
-
-    @Test
-    void generateBinaryStringFromHexInt0() {
-        assertEquals("0000", converter.convertDecimalOfHexDigitToBinaryString(0));
-    }
-
-    @Test
-    void generateBinaryStringFromHexInt4() {
-        assertEquals("0100", converter.convertDecimalOfHexDigitToBinaryString(4));
-    }
-
-    @Test
-    void generateBinaryStringFromHexInt10() {
-        assertEquals("1010", converter.convertDecimalOfHexDigitToBinaryString(10));
-    }
-
-    @Test
-    void generateBinaryStringFromHexInt56() {
-        assertEquals("111000", converter.convertDecimalOfHexDigitToBinaryString(56));
-    }
 }
