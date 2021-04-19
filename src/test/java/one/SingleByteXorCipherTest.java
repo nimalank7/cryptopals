@@ -31,4 +31,9 @@ class SingleByteXorCipherTest {
         String asciiOfDecodedHex = "tt"; // Decoded hex is 74 - I used the example from challenge 2
         assertEquals(asciiOfDecodedHex, singleByteXorCipher.returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(hexToDecode, key));
     }
+
+    @Test
+    void returnFrequencyScoreForEnglishText() {
+        assertEquals(9, singleByteXorCipher.score("Ready Steady Cook"));
+    }
 }

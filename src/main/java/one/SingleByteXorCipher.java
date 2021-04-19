@@ -1,5 +1,7 @@
 package one;
 
+import java.util.ArrayList;
+
 public class SingleByteXorCipher {
 
     private FixedHexXorCombiner hexXorCombiner = new FixedHexXorCombiner();
@@ -21,15 +23,40 @@ public class SingleByteXorCipher {
     Decode the resultant value
      */
 
-    void decodesAsciiForEncodedHexForEachAsciiKeys() {
+    DecryptedText decodesAsciiForEncodedHexForEachAsciiKeys() {
+        int bestScore = 0;
+        int bestKey = 0;
+        String bestText = "";
+
         for (int i = 0; i < 256; i++) {
             String binaryStringOfKey = NumberConverter.convertDecimalToByteBinaryString(i);
             Integer integerValueNibbleOne = Integer.parseInt(binaryStringOfKey.substring(0, 4), 2);
             Integer integerValueNibbleTwo = Integer.parseInt(binaryStringOfKey.substring(4, 8), 2);
             String hexDigitsOfBinaryStringKey = Integer.toHexString(integerValueNibbleOne) + Integer.toHexString(integerValueNibbleTwo);
             String decodedAscii = returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(encodedHex, hexDigitsOfBinaryStringKey);
-            System.out.println(decodedAscii + " Key: " + binaryStringOfKey + " int value: " + i);
+            //System.out.println(decodedAscii + " Key: " + binaryStringOfKey + " int value: " + i);
+            int scoreOfText = score(decodedAscii);
+            if (scoreOfText > bestScore) {
+                bestScore = scoreOfText;
+                bestKey = i;
+                bestText = decodedAscii;
+            }
         }
+        return new DecryptedText(bestKey, bestScore, bestText);
+    }
+
+    int score(String englishString) {
+        int score = 0;
+        char[] frequentEnglishLetters = {'e', 't', 'a', 'o', 'i', 'n', ' '};
+        for(char letter: frequentEnglishLetters) {
+            for (int i = 0; i < englishString.length(); i++) {
+                if (letter == englishString.toLowerCase().charAt(i)) {
+                    score += 1;
+                }
+            }
+        }
+
+        return score;
     }
 
     String returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(String hex, String key) {
