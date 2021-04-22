@@ -1,12 +1,16 @@
 package one;
 
-import java.util.ArrayList;
-
-public class SingleByteXorCipher {
+public class DecryptSingleByteXorCipher {
 
     private FixedHexXorCombiner hexXorCombiner = new FixedHexXorCombiner();
     private HexToBase64WithBinaryConverter hexToBase64WithBinaryConverter = new HexToBase64WithBinaryConverter();
-    private String encodedHex = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736";
+
+
+    public static void main(String[] args) {
+        String encodedHex = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736";
+        DecryptSingleByteXorCipher decryptSingleByteXorCipher = new DecryptSingleByteXorCipher();
+        System.out.println(decryptSingleByteXorCipher.decodesAsciiForEncodedHexForEachAsciiKeys(encodedHex));
+    }
 
     /*
     Sample string 'hello' is converted into ASCII and then into binary
@@ -23,17 +27,17 @@ public class SingleByteXorCipher {
     Decode the resultant value
      */
 
-    DecryptedText decodesAsciiForEncodedHexForEachAsciiKeys() {
+    DecryptedText decodesAsciiForEncodedHexForEachAsciiKeys(String text) {
         int bestScore = 0;
         int bestKey = 0;
         String bestText = "";
 
         for (int i = 0; i < 256; i++) {
-            String binaryStringOfKey = NumberConverter.convertDecimalToByteBinaryString(i);
+            String binaryStringOfKey = Utilities.convertDecimalToByteBinaryString(i);
             Integer integerValueNibbleOne = Integer.parseInt(binaryStringOfKey.substring(0, 4), 2);
             Integer integerValueNibbleTwo = Integer.parseInt(binaryStringOfKey.substring(4, 8), 2);
             String hexDigitsOfBinaryStringKey = Integer.toHexString(integerValueNibbleOne) + Integer.toHexString(integerValueNibbleTwo);
-            String decodedAscii = returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(encodedHex, hexDigitsOfBinaryStringKey);
+            String decodedAscii = returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(text, hexDigitsOfBinaryStringKey);
             //System.out.println(decodedAscii + " Key: " + binaryStringOfKey + " int value: " + i);
             int scoreOfText = score(decodedAscii);
             if (scoreOfText > bestScore) {
@@ -42,7 +46,7 @@ public class SingleByteXorCipher {
                 bestText = decodedAscii;
             }
         }
-        return new DecryptedText(bestKey, bestScore, bestText);
+        return new DecryptedText(bestKey, bestScore, bestText, text);
     }
 
     int score(String englishString) {
@@ -83,7 +87,7 @@ public class SingleByteXorCipher {
             String hexDigitTwo = Character.toString(hexString.charAt(i + 1));
             String binaryForHexDigitOne = hexToBase64WithBinaryConverter.convertHexStringToBinaryString(hexDigitOne);
             String binaryForHexDigitTwo = hexToBase64WithBinaryConverter.convertHexStringToBinaryString(hexDigitTwo);
-            int asciiInt = NumberConverter.binaryToDecimal(binaryForHexDigitOne + binaryForHexDigitTwo);
+            int asciiInt = Utilities.binaryToDecimal(binaryForHexDigitOne + binaryForHexDigitTwo);
             asciiString.append((char) asciiInt);
         }
         return asciiString.toString();

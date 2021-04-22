@@ -30,16 +30,16 @@ public class HexToBase64WithBinaryConverter {
         String[] hexArray = hex.split("");
         StringBuilder binaryString = new StringBuilder();
         for(String hexDigit : hexArray) {
-            int decimalForHexDigit = NumberConverter.hexToDecimal(hexDigit);
-            var binaryForHexDigit = NumberConverter.convertDecimalOfHexDigitToFourBitBinaryString(decimalForHexDigit);
+            int decimalForHexDigit = Utilities.hexToDecimal(hexDigit);
+            var binaryForHexDigit = Utilities.convertDecimalOfHexDigitToFourBitBinaryString(decimalForHexDigit);
             binaryString.append(binaryForHexDigit);
         }
         return binaryString.toString();
     }
 
     String convertBinaryOfHexDigitToBase64Digit(String binaryOfHexDigit) {
-        int decimalOfBinaryOfHexDigit = NumberConverter.decimalOfBinary(binaryOfHexDigit);
-        String base64DigitOfHexDigit = NumberConverter.returnBase64DigitForDecimalIndex(new BigDecimal(decimalOfBinaryOfHexDigit));
+        int decimalOfBinaryOfHexDigit = Utilities.decimalOfBinary(binaryOfHexDigit);
+        String base64DigitOfHexDigit = Utilities.returnBase64DigitForDecimalIndex(new BigDecimal(decimalOfBinaryOfHexDigit));
 
         return base64DigitOfHexDigit;
     }

@@ -20,8 +20,8 @@ public class FixedHexXorCombiner {
             String binaryOfHexOneDigit = hexToBase64WithBinaryConverter.convertHexStringToBinaryString(hexOneDigitArray[i]);
             String binaryOfHexTwoDigit = hexToBase64WithBinaryConverter.convertHexStringToBinaryString(hexTwoDigitArray[i]);
             String xorOfBinaryOfHexDigits = xorOfBinaryOfHexDigit(binaryOfHexOneDigit, binaryOfHexTwoDigit);
-            int decimalOfXorOfBinaryOfHexDigits = NumberConverter.decimalOfBinary(xorOfBinaryOfHexDigits);
-            String hexDigitsForXorOfBinaryOfHexDigits = NumberConverter.decimalToHexadecimalDigit(decimalOfXorOfBinaryOfHexDigits);
+            int decimalOfXorOfBinaryOfHexDigits = Utilities.decimalOfBinary(xorOfBinaryOfHexDigits);
+            String hexDigitsForXorOfBinaryOfHexDigits = Utilities.decimalToHexadecimalDigit(decimalOfXorOfBinaryOfHexDigits);
             xorHexCombinationBuilder.append(hexDigitsForXorOfBinaryOfHexDigits);
         }
         return xorHexCombinationBuilder.toString();

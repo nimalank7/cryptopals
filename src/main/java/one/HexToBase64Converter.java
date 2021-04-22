@@ -31,7 +31,7 @@ public class HexToBase64Converter {
 
         for(int i = 0; i < reversedHexArray.length; i++ ) {
             BigDecimal powerOfSixteen = sixteen.pow(i);
-            BigDecimal decimalIndexForHex = new BigDecimal(NumberConverter.hexToDecimal(reversedHexArray[i]));
+            BigDecimal decimalIndexForHex = new BigDecimal(Utilities.hexToDecimal(reversedHexArray[i]));
             BigDecimal decimalValueOfHexDigit = powerOfSixteen.multiply(decimalIndexForHex);
             decimalDoubleValue = decimalDoubleValue.add(decimalValueOfHexDigit);
         }
@@ -46,7 +46,7 @@ public class HexToBase64Converter {
 
         while (quotient.compareTo(BigDecimal.ZERO) > 0) {
             BigDecimal remainder = quotient.remainder(sixtyFour);
-            String base64DigitForDecimalIndex = NumberConverter.returnBase64DigitForDecimalIndex(remainder);
+            String base64DigitForDecimalIndex = Utilities.returnBase64DigitForDecimalIndex(remainder);
             quotient = quotient.divideToIntegralValue(sixtyFour);
 
             base64Value = base64DigitForDecimalIndex + base64Value;

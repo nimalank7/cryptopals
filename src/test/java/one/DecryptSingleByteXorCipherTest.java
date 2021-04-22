@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SingleByteXorCipherTest {
+class DecryptSingleByteXorCipherTest {
 
-    SingleByteXorCipher singleByteXorCipher = new SingleByteXorCipher();
+    DecryptSingleByteXorCipher decryptSingleByteXorCipher = new DecryptSingleByteXorCipher();
 
     @Test
     void returnCorrectDecodedAsciiStringForHexString() {
         String expectedAsciiString = "Ready Steady Cook!";
         String hexStringToDecode = "52656164792053746561647920436f6f6b21";
-        String actualAsciiString = singleByteXorCipher.returnDecodedAsciiForHexString(hexStringToDecode);
+        String actualAsciiString = decryptSingleByteXorCipher.returnDecodedAsciiForHexString(hexStringToDecode);
         assertEquals(expectedAsciiString, actualAsciiString);
     }
 
@@ -21,7 +21,7 @@ class SingleByteXorCipherTest {
         String hexToDecode = "1c";
         String key = "68";
         String asciiOfDecodedHex = "t"; // Decoded hex is 74 - I used the example from challenge 2
-        assertEquals(asciiOfDecodedHex, singleByteXorCipher.returnDecodedAsciiCharOfXorCipherEncodedHexCharWithKey(hexToDecode, key));
+        assertEquals(asciiOfDecodedHex, decryptSingleByteXorCipher.returnDecodedAsciiCharOfXorCipherEncodedHexCharWithKey(hexToDecode, key));
     }
 
     @Test
@@ -29,11 +29,11 @@ class SingleByteXorCipherTest {
         String hexToDecode = "1c1c";
         String key = "68";
         String asciiOfDecodedHex = "tt"; // Decoded hex is 74 - I used the example from challenge 2
-        assertEquals(asciiOfDecodedHex, singleByteXorCipher.returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(hexToDecode, key));
+        assertEquals(asciiOfDecodedHex, decryptSingleByteXorCipher.returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(hexToDecode, key));
     }
 
     @Test
     void returnFrequencyScoreForEnglishText() {
-        assertEquals(9, singleByteXorCipher.score("Ready Steady Cook"));
+        assertEquals(9, decryptSingleByteXorCipher.score("Ready Steady Cook"));
     }
 }

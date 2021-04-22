@@ -5,11 +5,13 @@ public class DecryptedText {
     private int key;
     private int score;
     private String decryptedAscii;
+    private String encodedHex;
 
-    public DecryptedText(int key, int score, String decryptedAscii) {
+    public DecryptedText(int key, int score, String decryptedAscii, String encodedHex) {
         this.key = key;
         this.score = score;
         this.decryptedAscii = decryptedAscii;
+        this.encodedHex = encodedHex;
     }
 
     public int getKey() {
@@ -36,12 +38,21 @@ public class DecryptedText {
         this.decryptedAscii = decryptedAscii;
     }
 
+    public String getEncodedHex() {
+        return encodedHex;
+    }
+
+    public void setEncodedHex(String encodedHex) {
+        this.encodedHex = encodedHex;
+    }
+
     @Override
     public String toString() {
         return "DecryptedText{" +
                 "key=" + key +
                 ", score=" + score +
                 ", decryptedAscii='" + decryptedAscii + '\'' +
+                ", encodedHex='" + encodedHex + '\'' +
                 '}';
     }
 }

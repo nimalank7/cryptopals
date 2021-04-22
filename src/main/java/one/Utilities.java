@@ -2,9 +2,12 @@ package one;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class NumberConverter {
+public class Utilities {
 
+    public final static Path PATH_TO_RESOURCES = Paths.get("/Users/nimalankirubakaran/Projects/cryptopals/src/main/resources");
     public static final String HEXADECIMAL = "0123456789abcdef";
     public static final String BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
