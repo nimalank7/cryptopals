@@ -33,10 +33,7 @@ public class DecryptSingleByteXorCipher {
         String bestText = "";
 
         for (int i = 0; i < 256; i++) {
-            String binaryStringOfKey = Utilities.convertDecimalToByteBinaryString(i);
-            Integer integerValueNibbleOne = Integer.parseInt(binaryStringOfKey.substring(0, 4), 2);
-            Integer integerValueNibbleTwo = Integer.parseInt(binaryStringOfKey.substring(4, 8), 2);
-            String hexDigitsOfBinaryStringKey = Integer.toHexString(integerValueNibbleOne) + Integer.toHexString(integerValueNibbleTwo);
+            String hexDigitsOfBinaryStringKey = Utilities.hexDigitsOfAscii(i);
             String decodedAscii = returnDecodedAsciiTextOfXorCipherEncodedHexStringWithKey(text, hexDigitsOfBinaryStringKey);
             //System.out.println(decodedAscii + " Key: " + binaryStringOfKey + " int value: " + i);
             int scoreOfText = score(decodedAscii);

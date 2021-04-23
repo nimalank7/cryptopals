@@ -1,6 +1,7 @@
 package one;
 
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,6 +11,23 @@ public class Utilities {
     public final static Path PATH_TO_RESOURCES = Paths.get("/Users/nimalankirubakaran/Projects/cryptopals/src/main/resources");
     public static final String HEXADECIMAL = "0123456789abcdef";
     public static final String BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+    static String completeHexStringOfAsciiText(String asciiText) {
+        byte[] asciiTextBytes = asciiText.getBytes(Charset.defaultCharset());
+        StringBuilder hexDigitsOfAscii = new StringBuilder();
+        for(Byte asciiTextByte: asciiTextBytes) {
+            hexDigitsOfAscii.append(Integer.toHexString(asciiTextByte));
+        }
+        return hexDigitsOfAscii.toString();
+    }
+
+    static String hexDigitsOfAscii(int decimalValueOfString) {
+        String binaryStringOfKey = Utilities.convertDecimalToByteBinaryString(decimalValueOfString);
+        Integer integerValueNibbleOne = Integer.parseInt(binaryStringOfKey.substring(0, 4), 2);
+        Integer integerValueNibbleTwo = Integer.parseInt(binaryStringOfKey.substring(4, 8), 2);
+        String hexDigitsOfBinaryStringKey = Integer.toHexString(integerValueNibbleOne) + Integer.toHexString(integerValueNibbleTwo);
+        return hexDigitsOfBinaryStringKey;
+    }
 
     static int binaryToDecimal(String binaryString) {
         String[] binaryStringArray = new StringBuilder(binaryString).reverse().toString().split("");

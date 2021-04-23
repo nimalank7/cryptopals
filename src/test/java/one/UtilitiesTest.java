@@ -6,7 +6,12 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NumberConvertersTest {
+class UtilitiesTest {
+
+    @Test
+    void returnHexStringForAsciiString() {
+        assertEquals("48656c6c6f", Utilities.completeHexStringOfAsciiText("Hello"));
+    }
 
     @Test
     void returnDecimal3ForBinaryEquivalent() {
