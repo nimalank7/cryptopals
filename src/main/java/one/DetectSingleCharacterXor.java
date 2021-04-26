@@ -60,16 +60,16 @@ public class DetectSingleCharacterXor {
     }
 
     List<String> loadEncryptedTextFromFile(Path pathToFile) {
-        List<String> encryptedHexStrings = new ArrayList<>();
+        List<String> encryptedStrings = new ArrayList<>();
         try (BufferedReader reader = Files.newBufferedReader(pathToFile)) {
             String readString;
             while((readString = reader.readLine()) != null) {
-                encryptedHexStrings.add(readString);
+                encryptedStrings.add(readString);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return encryptedHexStrings;
+        return encryptedStrings;
     }
 }
